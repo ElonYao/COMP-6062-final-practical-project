@@ -12,11 +12,9 @@
         <main>
             <div id="app">
                 <p>Full Name: {{ fullName }}</p>
-                <p>Age:{{Age}}</p>
-                <p><img src="{{profilePhoto}}"></p>
+                <p>Age:{{age}}</p>
+                <p><img :src="profilePhoto" alt="Profile Photo"></p>
                 <button @click="fetchData">New Profile</button>
-            </div>
-            <div id="app"  class="#input-group">
                 <p>Temperature: {{ temperature }}</p>
                 <p>Wind: {{ wind }}</p>
                 <p>Description: {{ description }}</p>
@@ -29,7 +27,14 @@
                 <p>
                     <input v-model="country" type="text" placeholder="Enter Country" required>
                 </p>
-                <button @click="fetchWeather">Get Weather</button>
+                <p>
+                    <button @click="fetchWeather">Get Weather</button>
+                </p>
+                <p>
+                    <input v-model="word" type="text" placeholder="Enter a word">
+                </p>
+                <p>Definition: {{ definition }}</p>
+                <button @click="fetchDefinition">Define</button>
             </div>
            
         </main>
