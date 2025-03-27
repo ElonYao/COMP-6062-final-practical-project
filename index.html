@@ -13,10 +13,24 @@
             <div id="app">
                 <p>Full Name: {{ fullName }}</p>
                 <p>Age:{{Age}}</p>
-                <p>Profile Photo:{{ ProfilePhoto }}</p>
+                <p><img src="{{profilePhoto}}"></p>
                 <button @click="fetchData">New Profile</button>
             </div>
-
+            <div id="app"  class="#input-group">
+                <p>Temperature: {{ temperature }}</p>
+                <p>Wind: {{ wind }}</p>
+                <p>Description: {{ description }}</p>
+                <p>
+                    <input v-model="city" type="text" placeholder="Enter City" required>
+                </p>
+                <p>
+                    <input v-model="province" type="text" placeholder="Enter Province" required>
+                </p>
+                <p>
+                    <input v-model="country" type="text" placeholder="Enter Country" required>
+                </p>
+                <button @click="fetchWeather">Get Weather</button>
+            </div>
            
         </main>
         <script src="https://unpkg.com/vue@3.4.31/dist/vue.global.js"></script>

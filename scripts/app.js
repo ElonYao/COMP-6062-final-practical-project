@@ -2,11 +2,20 @@
 const app = Vue.createApp({
     data() {
         return {
-            FirstName: 'Y',
-            LastName: 'y',
-            Age: '10',
+            FirstName: '',
+            LastName: '',
+            Age: '',
             ProfilePhoto: '',
+            city:'London',
+            province:'Ontario',
+            country:'Canada',
+            temperature: '',
+            wind: '',
+            description: '',
        };
+    },
+    created() {
+        this.fetchWeather();
     },
     computed: {
         fullName() {
@@ -16,7 +25,7 @@ const app = Vue.createApp({
     },
     methods:{
         fetchData() {
-            fetch('http://comp6062.liamstewart.ca/random-user-profile/')
+            fetch('http://comp6062.liamstewart.ca/random-user-profile')
             .then(response => {
                 if(response.ok) {
                     return response.json();
@@ -31,8 +40,26 @@ const app = Vue.createApp({
                 this.ProfilePhoto = data.profile_picture;
             })
             .catch(error => {
-                console.log('error');
+                console.error('Error:', error);
+        })
+        },
+        fetchWeather() {
+            fetch('http://comp6062.liamstewart.ca/weather-information?city='+this.city+'&province='+this.province+'&country='+this.country)
+            .then(response => {
+                if(response.ok) {
+                    return response.json();
+                } else {
+                    console.log('Unknown error, please try again');
+                }
             })
+            .then(weatherData => {
+                this.temperature = weatherData.temperature;
+                this.wind = weatherData.wind_speed;
+                this.description = weatherData.weather_description;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+        })
         }
     }
 });
