@@ -14,7 +14,7 @@ const app = Vue.createApp({
             description: '',
             word:'',
             phonetic:'',
-            definition:'llll'
+            definition:''
        };
     },
     mounted() {
@@ -76,7 +76,7 @@ const app = Vue.createApp({
             })
             .then(definitionData => {
                 console.log("API Response:", definitionData); 
-                this.definition = definitionData.definition;
+                this.definition = definitionData[0].definition;
                 //this.phonetic = definitionData.phonetic;    
             })
             .catch(error => {
